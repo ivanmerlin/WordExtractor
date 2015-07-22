@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 
 public class WordFrame extends JFrame implements Runnable{
 
-	public static final int width=400;
+	public static final int width=420;
 	public static final int height=170;
 	public static final String pathValue="materials/words2.txt";
 	Font font=new Font("微软雅黑",Font.BOLD,15);
@@ -58,9 +58,9 @@ public class WordFrame extends JFrame implements Runnable{
 		 wordLabel=new JLabel();
 		 expLabel=new JLabel();
 		 
-		 wordLabel.setSize(width/4-20,height);
+		 wordLabel.setSize(width/4-8,height);
 		 expLabel.setSize(width*3/4-8,height);
-		 wordLabel.setLocation(20,0);
+		 wordLabel.setLocation(8,0);
 		 expLabel.setLocation(width/4,0);
 		 wordLabel.setFont(font);
 		 expLabel.setFont(font);
