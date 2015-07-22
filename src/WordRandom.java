@@ -27,11 +27,12 @@ public class WordRandom {
 			BufferedReader br=new BufferedReader(new FileReader(new File(path)));
 			String line=br.readLine();
 			String word = null;
-			StringBuffer exp=new StringBuffer();
+			StringBuffer exp=new StringBuffer();			
 			dicMap=new HashMap<String,String>();
 			while(line!=null){
 			    if(line.contains("Q:")){
 			        exp.setLength(0);
+			        exp.append("<html><body>");
 			        String[] temp=line.split(" ");
 		        
 			        if(temp.length>=2){
@@ -42,9 +43,10 @@ public class WordRandom {
 			        line=br.readLine();
 			        while(line!=null&&line.contains("【考法")){
 			            exp.append(line);
-			            exp.append("\n");
+			            exp.append("<br>");
 			            line=br.readLine();
 			        }
+			        exp.append("</body></html>");
 //			        System.out.println(exp.toString());
 			        dicMap.put(word, exp.toString());
 			    }else{
