@@ -27,10 +27,11 @@ public class WordFrame extends JFrame implements Runnable {
     JButton closeButton;
     WordRandom wr;
     Thread freshThread;
- 
+    int time;
 
     public WordFrame() {
 
+        time=10;
         closeButton = new JButton();
         closeButton.setIcon(new ImageIcon("img/closeButton.png"));
         closeButton.setBorderPainted(false);
@@ -92,8 +93,9 @@ public class WordFrame extends JFrame implements Runnable {
                 super.mouseClicked(e);
                 if(e.getClickCount()==2){
                     String word=wordLabel.getText();
-                    wr.removeElement(word);
+                    wr.removeElement(word);                    
                     showText();
+                    time=10;
                 }
             }
             
@@ -109,6 +111,7 @@ public class WordFrame extends JFrame implements Runnable {
                     String word=wordLabel.getText();
                     wr.removeElement(word);
                     showText();
+                    time=10;
                 }
          
             }
@@ -143,12 +146,18 @@ public class WordFrame extends JFrame implements Runnable {
     public void run() {
         // TODO Auto-generated method stub
         while (true) {
-            try {
-                showText();
-                Thread.sleep(10000);
-            } catch (Exception e) {
-                e.printStackTrace();
+            time=10;
+            showText();
+            while(time>0){
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                time--;
             }
+
         }
     }
 }
