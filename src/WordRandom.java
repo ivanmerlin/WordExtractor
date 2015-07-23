@@ -22,7 +22,7 @@ public class WordRandom {
 		
 		
 	}
-	private void init() throws IOException{
+	private void init() {
 		try {
 			BufferedReader br=new BufferedReader(new FileReader(new File(path)));
 			String line=br.readLine();
@@ -37,10 +37,13 @@ public class WordRandom {
 		        
 			        if(temp.length>=2){
 //			            System.out.println(temp[1]);
-			            word=temp[1];			            
+			            word="<html><body>"+temp[1]+"</body></html>";			            
 			        }
-			        br.readLine();		
+			        	
 			        line=br.readLine();
+			        while(line!=null&& !line.contains("【考法")){
+			            line=br.readLine();
+			        }
 			        while(line!=null&&line.contains("【考法")){
 			            exp.append(line);
 			            exp.append("<br>");
@@ -58,7 +61,10 @@ public class WordRandom {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 		
 	}
 	
@@ -71,6 +77,9 @@ public class WordRandom {
 	    result[1]=dicMap.get(result[0]);
 	    return result;
 	    
+	}
+	public void removeElement(String word){
+	    dicMap.remove(word);
 	}
 	public static void main(String[] args) throws IOException {
 		WordRandom wordRandom=new WordRandom("materials/words2.txt");
